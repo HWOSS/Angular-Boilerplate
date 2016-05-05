@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "",
-  "scripts": {},
+  "scripts": {
+
+  },
   "repository": {
     "type": "git",
     "url": ""
@@ -15,6 +17,10 @@
   "license": "",
   "bugs": {
     "url": ""
+  },
+  "paths": {
+    "scripts": "src/**/*.js",
+    "styles": "src/sass"
   },
   "homepage": "",
   "devDependencies": {
