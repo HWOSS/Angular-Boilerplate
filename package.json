@@ -1,0 +1,24 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "contributors": [
+    "patrickmarabeas <patrick.marabeas@heathwallace.com>",
+    "anthonykirkham <anthony.kirkham@heathwallace.com>"
+  ],
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {}
+}
