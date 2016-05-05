@@ -25,7 +25,9 @@
     "gulp": "^3.9.1",
     "gulp-jscs": "^3.0.2",
     "gulp-stylelint": "^2.0.2",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "stylelint-declaration-use-variable": "^1.1.0",
+    "stylelint-statement-max-nesting-depth": "^2.0.1"
   },
   "dependencies": {}
 }
