@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "main": "",
-  "scripts": {
-
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": ""
@@ -20,12 +18,13 @@
   },
   "paths": {
     "scripts": "src/**/*.js",
-    "styles": "src/sass"
+    "styles": "src/sass/**/*.scss"
   },
   "homepage": "",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-jscs": "^3.0.2",
+    "gulp-stylelint": "^2.0.2",
     "require-dir": "^0.3.0"
   },
   "dependencies": {}

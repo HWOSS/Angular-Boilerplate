@@ -7,7 +7,7 @@ var fs          = require('fs')
   ;
 
 
-gulp.task('default', ['js-code-style'], function() {
+gulp.task('default', ['js-code-style', 'lint-css'], function() {
 
 });
 
