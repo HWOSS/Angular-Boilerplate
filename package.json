@@ -18,7 +18,9 @@
   },
   "homepage": "",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-jscs": "^3.0.2",
+    "require-dir": "^0.3.0"
   },
   "dependencies": {}
 }
