@@ -7,7 +7,7 @@ var fs          = require('fs')
 gulp.task('lint-css', function lintCssTask() {
 
   return gulp
-    .src(npmPkg.paths.styles)
+    .src(npmPkg.paths.styles.src)
     .pipe(gulpStylelint({
       reporters: [
         {formatter: 'string', console: true}
