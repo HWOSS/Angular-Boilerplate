@@ -19,10 +19,10 @@ require('./tasks/eslint');
  *
  */
 gulp.task('watch-js', ['eslint']);
-gulp.task('watch-sass', []);
+gulp.task('watch-sass', ['js-code-style', 'lint-css', 'sass']);
 gulp.task('dev', ['watch'], function() {
   var jsFiles = [npmPkg.paths.scripts.src]
-    , sassFiles = []
+    , sassFiles = [npmPkg.paths.styles.src]
     ;
 
   gulp.watch(jsFiles, ['watch-js']);
