@@ -1,20 +1,38 @@
 var fs          = require('fs')
-  , npmPkg      = JSON.parse(fs.readFileSync('./package.json'))
-  , dir         = require('require-dir')
   , gulp 				= require('gulp')
 
-  , tasks       = dir('./tasks')
+  , npmPkg      = JSON.parse(fs.readFileSync('./package.json'))
   ;
 
+/**
+ *
+ * Tasks required for the project
+ *
+ */
+require('./tasks/eslint');
 
-gulp.task('default', ['js-code-style'], function() {
 
+/**
+ *
+ * Development tasks
+ * Run when changes are detected
+ *
+ */
+gulp.task('watch-js', ['eslint']);
+gulp.task('watch-sass', []);
+gulp.task('dev', ['watch'], function() {
+  var jsFiles = [npmPkg.paths.scripts.src]
+    , sassFiles = []
+    ;
+
+  gulp.watch(jsFiles, ['watch-js']);
+  gulp.watch(sassFiles, ['watch-sass'])
 });
 
-gulp.task('watch', ['default'], function() {
-  var watchFiles = [
-    npmPkg.paths.scripts
-  ];
 
-  gulp.watch(watchFiles, ['default']);
-});
+/**
+ *
+ * Production tasks
+ *
+ */
+gulp.task('prod', []);
