@@ -1,9 +1,13 @@
 {
+  "globals": {
+    "console": true,
+    "require": true
+  },
   "rules": {
     // Possible Errors
     // These rules relate to possible syntax or logic errors in JavaScript code:
     "no-cond-assign": "error", // disallow assignment operators in conditional expressions
-    "no-console": "error", // disallow the use of console
+    "no-console": "warn", // disallow the use of console
     "no-constant-condition": "error", // disallow constant expressions in conditions
     "no-control-regex": "error", // disallow control characters in regular expressions
     "no-debugger": "error", // disallow the use of debugger
@@ -92,7 +96,7 @@
     "default-case": "off", // require default cases in switch statements
     "dot-location": "off", // enforce consistent newlines before and after dots
     "dot-notation": "off", // enforce dot notation whenever possible
-    "eqeqeq": "off", // require the use of === and !==
+    "eqeqeq": "error", // require the use of === and !==
     "guard-for-in": "off", // require for-in loops to include an if statement
     "radix": "off", // enforce the consistent use of the radix argument when using parseInt()
     "vars-on-top": "off", // require var declarations be placed at the top of their containing scope
@@ -154,7 +158,7 @@
     "no-unneeded-ternary": "off", // disallow ternary operators when simpler alternatives exist
     "array-bracket-spacing": "off", // enforce consistent spacing inside array brackets
     "block-spacing": "off", // enforce consistent spacing inside single-line blocks
-    "brace-style": "off", // enforce consistent brace style for blocks
+    "brace-style": ["error", "1tbs", { "allowSingleLine": false }], // enforce consistent brace style for blocks
     "camelcase": "off", // enforce camelcase naming convention
     "comma-spacing": "off", // enforce consistent spacing before and after commas
     "comma-style": "off", // enforce consistent comma style
@@ -164,7 +168,7 @@
     "func-names": "off", // enforce named function expressions
     "func-style": "off", // enforce the consistent use of either function declarations or expressions
     "id-length": "off", // enforce minimum and maximum identifier lengths
-    "indent": "off", // enforce consistent indentation
+    "indent": ["error", 2], // enforce consistent indentation
     "jsx-quotes": "off", // enforce the consistent use of either double or single quotes in JSX attributes
     "key-spacing": "off", // enforce consistent spacing between keys and values in object literal properties
     "keyword-spacing": "off", // enforce consistent spacing before and after keywords
@@ -197,7 +201,7 @@
     "space-before-blocks": "off", // enforce consistent spacing before blocks
     "space-before-function-paren": "off", // enforce consistent spacing before function definition opening parenthesis
     "space-in-parens": "off", // enforce consistent spacing inside parentheses
-    "space-infix-ops": "off", // require spacing around operators
+    "space-infix-ops": "error", // require spacing around operators
     "space-unary-ops": "off", // enforce consistent spacing before or after unary operators
     "spaced-comment": "off", // enforce consistent spacing after the // or /* in a comment
     "wrap-regex": "off", // require parenthesis around regex literals
