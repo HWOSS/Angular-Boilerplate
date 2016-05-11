@@ -10,6 +10,8 @@ var fs          = require('fs')
  *
  */
 require('./tasks/eslint');
+require('./tasks/gulp-sass');
+require('./tasks/stylelint');
 
 
 /**
@@ -19,8 +21,10 @@ require('./tasks/eslint');
  *
  */
 gulp.task('watch-js', ['eslint']);
-gulp.task('watch-sass', ['js-code-style', 'lint-css', 'sass']);
-gulp.task('dev', ['watch'], function() {
+
+gulp.task('watch-sass', ['lint-css', 'sass']);
+
+gulp.task('dev', ['watch-js', 'watch-sass'], function() {
   var jsFiles = [npmPkg.paths.scripts.src]
     , sassFiles = [npmPkg.paths.styles.src]
     ;
