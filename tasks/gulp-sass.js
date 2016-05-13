@@ -9,8 +9,9 @@ var fs          = require('fs')
 gulp.task('sass', function () {
   return gulp.src(npmPkg.paths.styles.src)
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write('./maps'))
+    .pipe(sass()
+      .on('error', sass.logError))
+    .pipe(sourcemaps.write()) // TODO: Add gulpif to check dev or production
     .pipe(gulp.dest(npmPkg.paths.styles.dist));
 });
 
