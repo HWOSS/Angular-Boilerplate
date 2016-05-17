@@ -11,7 +11,7 @@ var fs          = require('fs')
  */
 require('./tasks/eslint');
 require('./tasks/gulp-sass');
-require('./tasks/stylelint');
+require('./tasks/webpack-dev-server');
 
 
 /**
@@ -22,15 +22,13 @@ require('./tasks/stylelint');
  */
 gulp.task('watch-js', ['eslint']);
 
-gulp.task('watch-sass', ['lint-css', 'sass']);
-
-gulp.task('dev', ['watch-js', 'watch-sass'], function() {
-  var jsFiles = [npmPkg.paths.scripts.src]
-    , sassFiles = [npmPkg.paths.styles.src]
+gulp.task('dev', ['watch-js', 'sass'], function() {
+  var jsSrc     = [npmPkg.paths.scripts.src]
+    , styleSrc  = [npmPkg.paths.styles.src]
     ;
 
-  gulp.watch(jsFiles, ['watch-js']);
-  gulp.watch(sassFiles, ['watch-sass'])
+  gulp.watch(jsSrc, ['watch-js']);
+  gulp.watch(styleSrc, ['sass'])
 });
 
 
@@ -40,3 +38,14 @@ gulp.task('dev', ['watch-js', 'watch-sass'], function() {
  *
  */
 gulp.task('prod', []);
+
+
+/**
+ * webpack:prod
+ * webpack-dev-server
+ * eslint
+ *
+ * less:dev/prod
+ * sass:dev/prod
+ *
+ */

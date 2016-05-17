@@ -1,8 +1,8 @@
 var fs          = require('fs')
   , yargs       = require('yargs')
-  , gulp        = require('gulp')
+  , gulp 		    = require('gulp')
   , gif         = require('gulp-if')
-  , sass        = require('gulp-sass')
+  , less        = require('gulp-less')
   , sourcemaps  = require('gulp-sourcemaps')
   , cssmin      = require('gulp-cssmin')
   , stylelint   = require('gulp-stylelint')
@@ -40,13 +40,13 @@ gulp.task('sass', function () {
         {formatter: 'verbose', save: 'csslint.log'}
       ]
     }))
-    .pipe(sass()
-      .on('error', sass.logError))
-    /**
-     *
-     * TODO: PostCSS?
-     *
-     */
+    .pipe(less({
+      /**
+       * 
+       * TODO: Add LESS config
+       * 
+       */
+    }))
     .pipe(gif(ENV_DEV, sourcemaps.write('./maps')))
     .pipe(gif(ENV_PROD, cssmin()))
     .pipe(gif(ENV_PROD, size()))
