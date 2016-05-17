@@ -12,7 +12,7 @@ var fs          = require('fs')
   , config      = JSON.parse(fs.readFileSync('./tasks/config/stylelint.config.json'))
   ;
 
-gulp.task('sass', function () {
+gulp.task('less', function () {
 
   var args = yargs
     .options({
