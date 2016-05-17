@@ -10,7 +10,7 @@ var fs          = require('fs')
  *
  */
 require('./tasks/eslint');
-require('./tasks/gulp-sass');
+require('./tasks/sass');
 require('./tasks/webpack-dev-server');
 
 
