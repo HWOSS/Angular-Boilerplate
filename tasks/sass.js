@@ -28,6 +28,9 @@ gulp.task('sass', function () {
     , ENV_DEV     = args.env === 'dev'
     , ENV_PROD    = args.env === 'prod'
     ;
+  
+  if(ENV_DEV) 
+    gulp.watch(npmPkg.paths.styles.src, ['sass']);
 
   return gulp.src(npmPkg.paths.styles.src)
     .pipe(gif(ENV_DEV, sourcemaps.init()))
