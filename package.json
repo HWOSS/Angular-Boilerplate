@@ -18,7 +18,7 @@
   },
   "paths": {
     "scripts": {
-      "entry": [],
+      "entry": ["src/entry.js", "src/entry2.js"],
       "src": "src/**/*.js",
       "dist": "dist/scripts"
     },
@@ -46,6 +46,7 @@
     "jsonminify": "^0.4.1",
     "stylelint-declaration-use-variable": "^1.1.0",
     "stylelint-statement-max-nesting-depth": "^2.0.1",
+    "vinyl-named": "^1.1.0",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.2.0",
