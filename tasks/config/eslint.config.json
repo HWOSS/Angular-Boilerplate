@@ -198,7 +198,7 @@
     "id-blacklist": "off", // disallow specified identifiers // TODO: Unsure
     "require-jsdoc": "off", // require JSDoc comments
     "semi": ["error", "always"], // require or disallow semicolons instead of ASI
-    "semi-spacing": ["errro", {"before": false, "after": true}], // enforce consistent spacing before and after semicolons
+    "semi-spacing": ["error", {"before": false, "after": true}], // enforce consistent spacing before and after semicolons
     "sort-vars": "off", // require variables within the same declaration block to be sorted
     "space-before-blocks": "error", // enforce consistent spacing before blocks
     "space-before-function-paren": ["error", "never"], // enforce consistent spacing before function definition opening parenthesis
