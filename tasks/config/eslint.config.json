@@ -62,7 +62,7 @@
     "no-labels": "off", // disallow labeled statements
     "no-lone-blocks": "off", // disallow unnecessary nested blocks
     "no-loop-func": "error", // disallow function declarations and expressions inside loop statements
-    "no-multi-spaces": "error", // disallow multiple spaces
+    "no-multi-spaces": ["error", { "exceptions": { /*"VariableDeclarator": true,*/ "ImportDeclaration": true } }], // disallow multiple spaces // TODO: allow alignment or not?
     "no-multi-str": "error", // disallow multiline strings
     "no-native-reassign": "error", // disallow reassigning native objects
     "no-new": "error", // disallow new operators outside of assignments or comparisons
@@ -134,7 +134,7 @@
     "no-restricted-modules": "off", // disallow specified modules when loaded by require
     "no-sync": "off", // disallow synchronous methods
     "callback-return": "off", // require return statements after callbacks
-    "global-require": "off", // require require() calls to be placed at top-level module scope
+    "global-require": "error", // require require() calls to be placed at top-level module scope
     "handle-callback-err": "off", // require error handling in callbacks
 
     // Stylistic Issues
@@ -170,7 +170,7 @@
     "func-names": "off", // enforce named function expressions
     "func-style": "off", // enforce the consistent use of either function declarations or expressions
     "id-length": "off", // enforce minimum and maximum identifier lengths
-    "indent": ["error", 2], // enforce consistent indentation
+    "indent": ["error", 2, { "VariableDeclarator": { "var": 2, "let": 2, "const": 3 }}], // enforce consistent indentation
     "jsx-quotes": "off", // enforce the consistent use of either double or single quotes in JSX attributes
     "key-spacing": ["error", { "beforeColon": false, "afterColon": true }], // enforce consistent spacing between keys and values in object literal properties
     "keyword-spacing": ["error", { "before": true, "after": false }], // enforce consistent spacing before and after keywords
