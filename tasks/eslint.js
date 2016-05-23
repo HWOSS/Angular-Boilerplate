@@ -1,14 +1,15 @@
-var fs          = require('fs')
-  , yargs       = require('yargs')
-  , gulp        = require('gulp')
-  , eslint      = require('gulp-eslint')
-  , JSONminify  = require('jsonminify')
+var fs          = require('fs'),
+    yargs       = require('yargs'),
+    gulp        = require('gulp'),
+    eslint      = require('gulp-eslint'),
+    JSONminify  = require('jsonminify'),
 
-  , npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
-  , config      = JSON.parse(JSONminify(fs.readFileSync('./tasks/config/eslint.config.json', 'utf8')))
-  ;
+    npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8')),
+    config      = JSON.parse(JSONminify(fs.readFileSync('./tasks/config/eslint.config.json', 'utf8')));
 
 gulp.task('eslint', function() {
+
+  'use strict';
 
   var args = yargs
       .options({
@@ -18,14 +19,14 @@ gulp.task('eslint', function() {
           choices: ['dev', 'prod'],
           requiresArg: true
         }
-      }).argv
+      }).argv;
 
-    , ENV_DEV     = args.env === 'dev'
-    ;
+  var ENV_DEV = args.env === 'dev';
 
-  if(ENV_DEV)
+  if(ENV_DEV) {
     gulp.watch(npmPkg.paths.styles.src, ['eslint']);
-  
+  }
+
   return gulp.src(npmPkg.paths.scripts.src)
     .pipe(eslint(config))
     .pipe(eslint.format())

@@ -1,30 +1,30 @@
-var fs          = require('fs')
-  , yargs       = require('yargs')
-  , gulp        = require('gulp')
-  , named       = require('vinyl-named')
-  , webpack     = require('webpack-stream')
+var fs          = require('fs'),
+    yargs       = require('yargs'),
+    gulp        = require('gulp'),
+    named       = require('vinyl-named'),
+    webpack     = require('webpack-stream'),
 
-  , npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
-  , config      = require('./config/webpack.config.js')
-  ;
+    npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8')),
+    config      = require('./config/webpack.config.js');
 
 gulp.task('webpack', function() {
 
-  var args = yargs
-      .options({
-        'e': {
-          alias: ['env'],
-          describe: 'choose your environment',
-          choices: ['dev', 'prod'],
-          demand: true,
-          requiresArg: true
-        }
-      }).argv
+  'use strict';
 
-    , ENV_DEV     = args.env === 'dev'
-    , ENV_PROD    = args.env === 'prod'
-    ;
-  
+  var args = yargs
+    .options({
+      'e': {
+        alias: ['env'],
+        describe: 'choose your environment',
+        choices: ['dev', 'prod'],
+        demand: true,
+        requiresArg: true
+      }
+    }).argv;
+
+  var ENV_DEV   = args.env === 'dev',
+      ENV_PROD  = args.env === 'prod';
+
   if(ENV_DEV) {
     // var compiler = webpack();
     //
@@ -40,13 +40,14 @@ gulp.task('webpack', function() {
     //     //
     // });
   }
-  
+
   if(ENV_PROD) {
     return gulp.src(npmPkg.paths.scripts.entry)
       .pipe(named())
       .pipe(webpack(config))
       .pipe(gulp.dest(npmPkg.paths.scripts.dist))
       ;
+
   }
-  
+
 });

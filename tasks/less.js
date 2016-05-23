@@ -1,18 +1,19 @@
-var fs          = require('fs')
-  , yargs       = require('yargs')
-  , gulp 		    = require('gulp')
-  , gif         = require('gulp-if')
-  , less        = require('gulp-less')
-  , sourcemaps  = require('gulp-sourcemaps')
-  , cssmin      = require('gulp-cssmin')
-  , stylelint   = require('gulp-stylelint')
-  , size        = require('gulp-size')
+var fs          = require('fs'),
+    yargs       = require('yargs'),
+    gulp 		    = require('gulp'),
+    gif         = require('gulp-if'),
+    less        = require('gulp-less'),
+    sourcemaps  = require('gulp-sourcemaps'),
+    cssmin      = require('gulp-cssmin'),
+    stylelint   = require('gulp-stylelint'),
+    size        = require('gulp-size'),
 
-  , npmPkg      = JSON.parse(fs.readFileSync('./package.json'))
-  , config      = JSON.parse(fs.readFileSync('./tasks/config/stylelint.config.json'))
-  ;
+    npmPkg      = JSON.parse(fs.readFileSync('./package.json')),
+    config      = JSON.parse(fs.readFileSync('./tasks/config/stylelint.config.json'));
 
-gulp.task('less', function () {
+gulp.task('less', function() {
+
+  'use strict';
 
   var args = yargs
     .options({
@@ -23,14 +24,14 @@ gulp.task('less', function () {
         demand: true,
         requiresArg: true
       }
-    }).argv
+    }).argv;
 
-    , ENV_DEV     = args.env === 'dev'
-    , ENV_PROD    = args.env === 'prod'
-    ;
+  var ENV_DEV   = args.env === 'dev',
+      ENV_PROD  = args.env === 'prod';
 
-  if(ENV_DEV)
+  if(ENV_DEV) {
     gulp.watch(npmPkg.paths.styles.src, ['sass']);
+  }
 
   return gulp.src(npmPkg.paths.styles.src)
     .pipe(gif(ENV_DEV, sourcemaps.init()))
@@ -45,13 +46,14 @@ gulp.task('less', function () {
     }))
     .pipe(less({
       /**
-       * 
+       *
        * TODO: Add LESS config
-       * 
+       *
        */
     }))
     .pipe(gif(ENV_DEV, sourcemaps.write('./maps')))
     .pipe(gif(ENV_PROD, cssmin()))
     .pipe(gif(ENV_PROD, size()))
     .pipe(gif((ENV_DEV || ENV_PROD), gulp.dest(npmPkg.paths.styles.dist)));
+
 });
