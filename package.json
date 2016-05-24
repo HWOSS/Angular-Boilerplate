@@ -24,7 +24,7 @@
     },
     "styles": {
       "lang": "SCSS",
-      "src": "src/sass/**/*.scss",
+      "src": "src/less/**/*.less",
       "dist": "dist/css"
     }
   },
