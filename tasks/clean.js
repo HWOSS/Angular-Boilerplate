@@ -14,3 +14,11 @@ gulp.task('clean:style', function() {
     .pipe(vinylPaths(del));
 
 });
+
+
+gulp.task('clean:script', function() {
+  return gulp
+    .src(npmPkg.paths.scripts.dist, {read: false})
+    .pipe(vinylPaths(del));
+
+});
