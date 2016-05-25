@@ -15,7 +15,7 @@ gulp.task('stylelint', function() {
     .pipe(stylelint({
       config: rules,
       failAfterError: false,
-      reportOutputDir: 'logs',
+      reportOutputDir: 'tasks/logs',
       reporters: [
         {formatter: 'verbose', console: true},
         {formatter: 'verbose', save: 'csslint.log'}

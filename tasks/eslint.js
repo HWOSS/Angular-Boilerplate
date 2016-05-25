@@ -18,7 +18,7 @@ gulp.task('eslint', function() {
     .pipe(eslint(config))
     .pipe(eslint.format())
     .pipe(eslint.format('unix', function(output) {
-      fs.writeFileSync('./logs/eslint.log', output);
+      fs.writeFileSync('./tasks/logs/eslint.log', output);
     }));
 
 });
