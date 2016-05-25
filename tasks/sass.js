@@ -13,8 +13,8 @@ var fs          = require('fs'),
     npmPkg      = JSON.parse(fs.readFileSync('./package.json'));
 
 
-require('./tasks/clean');
-require('./tasks/stylelint');
+require('./clean');
+require('./stylelint');
 
 
 gulp.task('sass', function() {

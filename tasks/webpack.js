@@ -14,8 +14,8 @@ var fs          = require('fs'),
     wpProd      = require('./config/webpack.prod.config.js');
 
 
-require('./tasks/clean');
-require('./tasks/eslint');
+require('./clean');
+require('./eslint');
 
 
 gulp.task('webpack', function() {
