@@ -7,11 +7,10 @@ var fs          = require('fs'),
     gulp        = require('gulp'),
     livereload  = require('gulp-livereload'),
     named       = require('vinyl-named'),
-    webpack     = require('webpack-stream'),
+    webpack     = require('webpack'),
+    wpStream    = require('webpack-stream'),
 
-    npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8')),
-    wpDev       = require('./config/webpack.dev.config.js'),
-    wpProd      = require('./config/webpack.prod.config.js');
+    npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 
 require('./clean');
@@ -39,7 +38,7 @@ gulp.task('webpack', function() {
       runSequence(['eslint', 'clean:script'], 'webpack:dev');
       break;
     case 'prod':
-      runSequence(['eslint', 'clean:script'], 'webpack:prod');
+      runSequence(['clean:script'], 'webpack:prod');
       break;
     default:
   }
@@ -51,7 +50,11 @@ gulp.task('webpack:dev', function() {
   return gulp
     .src(npmPkg.paths.scripts.entry)
     .pipe(named())
-    .pipe(webpack(wpDev))
+    .pipe(wpStream({
+      stats: {
+        colors: true
+      }
+    }))
     .pipe(gulp.dest(npmPkg.paths.scripts.dist))
     .pipe(livereload());
 
@@ -62,7 +65,11 @@ gulp.task('webpack:uat', function() {
   return gulp
     .src(npmPkg.paths.scripts.entry)
     .pipe(named())
-    .pipe(webpack(wpDev))
+    .pipe(wpStream({
+      stats: {
+        colors: true
+      }
+    }))
     .pipe(gulp.dest(npmPkg.paths.scripts.dist));
 
 });
@@ -72,7 +79,21 @@ gulp.task('webpack:prod', function() {
   return gulp
     .src(npmPkg.paths.scripts.entry)
     .pipe(named())
-    .pipe(webpack(wpProd))
+    .pipe(wpStream({
+      stats: {
+        colors: true
+      },
+      // NOTE: https://webpack.github.io/docs/list-of-plugins.html
+      plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        // NOTE: https://github.com/mishoo/UglifyJS2#usage
+        new webpack.optimize.UglifyJsPlugin({
+          mangle: {
+            except: ['$super', '$', 'exports', 'require']
+          }
+        })
+      ]
+    }))
     .pipe(gulp.dest(npmPkg.paths.scripts.dist));
 
 });
