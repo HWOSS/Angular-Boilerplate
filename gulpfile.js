@@ -6,8 +6,8 @@ var gulp        = require('gulp'),
 
 
 require('./tasks/webpack');
-require('./tasks/sass');
+require('./tasks/less');
 
 
 // gulp -e [dev | uat | prod]
-gulp.task('default', runSequence(['webpack', 'sass']));
+gulp.task('default', runSequence(['webpack', 'less']));
