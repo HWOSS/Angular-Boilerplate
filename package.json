@@ -19,9 +19,9 @@
     "start": "webpack-dev-server --config 'tasks/config/webpack.dev.config.js'"
   },
   "paths": {
-    "app": "./src-angular/app",
+    "context": "./src-angular/app",
     "entry": {
-      "javascript": [
+      "script": [
         "./config/bootstrap.js"
       ],
       "html": [
@@ -30,7 +30,7 @@
     },
     "scripts": {
       "entry": [
-        "./config/bootstrap.js"
+        "./src-angular/app/config/bootstrap.js"
       ],
       "src": "src-angular/**/*.js",
       "dist": "dist/scripts"
