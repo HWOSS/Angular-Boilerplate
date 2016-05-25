@@ -5,6 +5,7 @@ var fs          = require('fs'),
     gulp        = require('gulp'),
     vinylPaths  = require('vinyl-paths'),
     del         = require('del'),
+
     npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 
