@@ -1,53 +1,78 @@
+
+'use strict';
+
 var fs          = require('fs'),
     yargs       = require('yargs'),
+    runSequence = require('run-sequence'),
     gulp        = require('gulp'),
+    livereload  = require('gulp-livereload'),
     named       = require('vinyl-named'),
     webpack     = require('webpack-stream'),
 
     npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8')),
-    config      = require('./config/webpack.config.js');
+    wpDev       = require('./config/webpack.dev.config.js'),
+    wpProd      = require('./config/webpack.prod.config.js');
+
+
+require('./tasks/clean');
+require('./tasks/eslint');
+
 
 gulp.task('webpack', function() {
 
-  'use strict';
+  var args = yargs.options({
+    'e': {
+      alias: ['env'],
+      describe: 'choose your environment',
+      choices: ['dev', 'uat', 'prod'],
+      demand: true,
+      requiresArg: true
+    }
+  }).argv;
 
-  var args = yargs
-    .options({
-      'e': {
-        alias: ['env'],
-        describe: 'choose your environment',
-        choices: ['dev', 'prod'],
-        demand: true,
-        requiresArg: true
-      }
-    }).argv;
-
-  var ENV_DEV   = args.env === 'dev',
-      ENV_PROD  = args.env === 'prod';
-
-  if(ENV_DEV) {
-    // var compiler = webpack();
-    //
-    // new WebpackDS(compiler, {
-    //   // server and middleware options
-    // }).listen(8080, "localhost", function(err) {
-    //   if(err) throw new gutil.PluginError("webpack-dev-server", err);
-    //     // Server listening
-    //   gutil.log("[webpack-dev-server]", "http://localhost:8080");
-    //
-    //     // keep the server alive or continue?
-    //     // callback();
-    //     //
-    // });
+  switch(args.env) {
+    case 'dev':
+      runSequence('clean:script', ['eslint', 'webpack:dev']);
+      gulp.watch(npmPkg.paths.scripts.src, ['webpack']);
+      break;
+    case 'uat':
+      runSequence(['eslint', 'clean:script'], 'webpack:dev');
+      break;
+    case 'prod':
+      runSequence(['eslint', 'clean:script'], 'webpack:prod');
+      break;
+    default:
   }
 
-  if(ENV_PROD) {
-    return gulp.src(npmPkg.paths.scripts.entry)
-      .pipe(named())
-      .pipe(webpack(config))
-      .pipe(gulp.dest(npmPkg.paths.scripts.dist))
-      ;
+});
 
-  }
+
+gulp.task('webpack:dev', function() {
+  return gulp
+    .src(npmPkg.paths.scripts.entry)
+    .pipe(named())
+    .pipe(webpack(wpDev))
+    .pipe(gulp.dest(npmPkg.paths.scripts.dist))
+    .pipe(livereload());
+
+});
+
+
+gulp.task('webpack:uat', function() {
+  return gulp
+    .src(npmPkg.paths.scripts.entry)
+    .pipe(named())
+    .pipe(webpack(wpDev))
+    .pipe(gulp.dest(npmPkg.paths.scripts.dist));
+
+});
+
+
+gulp.task('webpack:prod', function() {
+  return gulp
+    .src(npmPkg.paths.scripts.entry)
+    .pipe(named())
+    .pipe(webpack(wpProd))
+    .pipe(gulp.dest(npmPkg.paths.scripts.dist));
 
 });
