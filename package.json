@@ -19,6 +19,10 @@
     "start": "webpack-dev-server --config 'tasks/config/webpack.dev.config.js'"
   },
   "paths": {
+    "webpack": {
+      "dev": "./config/webpack.simple.dev.config.js",
+      "prod": ""
+    },
     "context": "./src-angular/app",
     "dist": "./dist",
     "entry": {
