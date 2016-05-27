@@ -7,6 +7,7 @@ var fs          = require('fs'),
     gulp        = require('gulp'),
     livereload  = require('gulp-livereload'),
 
+    env         = require('./args.js').env,
     npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 
@@ -16,17 +17,9 @@ require('./eslint');
 
 gulp.task('html', function() {
 
-  var args = yargs.options({
-    'e': {
-      alias: ['env'],
-      describe: 'choose your environment',
-      choices: ['dev', 'uat', 'prod'],
-      demand: true,
-      requiresArg: true
-    }
-  }).argv;
+  var argv = yargs.options(env).argv;
 
-  switch(args.env) {
+  switch(argv.env) {
     case 'dev':
       runSequence('clean:html', 'html:dev');
       gulp.watch(npmPkg.paths.markup.src, ['html']);

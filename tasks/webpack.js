@@ -10,6 +10,7 @@ var fs          = require('fs'),
     webpack     = require('webpack'),
     wpStream    = require('webpack-stream'),
 
+    env         = require('./args.js').env,
     npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 
@@ -19,17 +20,9 @@ require('./eslint');
 
 gulp.task('webpack', function() {
 
-  var args = yargs.options({
-    'e': {
-      alias: ['env'],
-      describe: 'choose your environment',
-      choices: ['dev', 'uat', 'prod'],
-      demand: true,
-      requiresArg: true
-    }
-  }).argv;
+  var argv = yargs.options(env).argv;
 
-  switch(args.env) {
+  switch(argv.env) {
     case 'dev':
       runSequence('clean:script', ['eslint', 'webpack:dev']);
       gulp.watch(npmPkg.paths.scripts.src, ['webpack']);
