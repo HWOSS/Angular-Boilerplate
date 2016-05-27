@@ -1,8 +1,7 @@
 
 'use strict';
 
-var gulp        = require('gulp'),
-    runSequence = require('run-sequence');
+var gulp        = require('gulp');
 
 
 require('./tasks/webpack');
