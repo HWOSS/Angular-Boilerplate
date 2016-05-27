@@ -11,4 +11,4 @@ require('./tasks/html');
 
 
 // gulp -e [dev | uat | prod]
-gulp.task('default', runSequence(['webpack', 'less', 'html']));
+gulp.task('default', ['webpack', 'less', 'html']);
