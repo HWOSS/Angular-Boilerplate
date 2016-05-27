@@ -20,6 +20,7 @@
   },
   "paths": {
     "context": "./src-angular/app",
+    "dist": "./dist",
     "entry": {
       "script": [
         "./config/bootstrap.js"
@@ -39,6 +40,10 @@
       "lang": "SCSS",
       "src": "src/less/**/*.less",
       "dist": "dist/css"
+    },
+    "markup": {
+      "src": "src-angular/app/**/*.html",
+      "dist": "dist/"
     }
   },
   "homepage": "",

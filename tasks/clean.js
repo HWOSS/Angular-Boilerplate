@@ -23,3 +23,11 @@ gulp.task('clean:script', function() {
     .pipe(vinylPaths(del));
 
 });
+
+
+gulp.task('clean:html', function() {
+  return gulp
+    .src(npmPkg.paths.dist + '**/*.html', {read: false})
+    .pipe(vinylPaths(del));
+
+});
