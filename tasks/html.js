@@ -15,27 +15,6 @@ require('./clean');
 require('./eslint');
 
 
-gulp.task('html', function() {
-
-  var argv = yargs.options(env).argv;
-
-  switch(argv.env) {
-    case 'dev':
-      runSequence('clean:html', 'html:dev');
-      gulp.watch(npmPkg.paths.markup.src, ['html']);
-      break;
-    case 'uat':
-      runSequence('clean:html', 'html:dev');
-      break;
-    case 'prod':
-      runSequence('clean:html', 'html:dev');
-      break;
-    default:
-  }
-
-});
-
-
 gulp.task('html:dev', function() {
   return gulp
     .src(npmPkg.paths.markup.src)
