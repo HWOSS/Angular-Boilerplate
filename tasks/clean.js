@@ -9,6 +9,14 @@ var fs          = require('fs'),
     npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 
+gulp.task('clean', function() {
+  return gulp
+    .src(npmPkg.paths.dist, {read: false})
+    .pipe(vinylPaths(del));
+
+});
+
+
 gulp.task('clean:style', function() {
   return gulp
     .src(npmPkg.paths.styles.dist, {read: false})
