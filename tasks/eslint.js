@@ -3,7 +3,9 @@
 
 var fs          = require('fs'),
     yargs       = require('yargs'),
+    chalk       = require('chalk'),
     gulp        = require('gulp'),
+    gutil       = require('gulp-util'),
     gif         = require('gulp-if'),
     eslint      = require('gulp-eslint'),
     cache       = require('gulp-cached'),
@@ -27,7 +29,12 @@ gulp.task('eslint', function() {
     .pipe(eslint(config))
     .pipe(gif(argv.silent,
       eslint.format(silentLog),
-      eslint.format('stylish')))
+      eslint.format()))
+    .pipe(eslint.results(function(results) {
+      if(!results.warningCount && !results.errorCount) {
+        gutil.log(chalk.black.bold('eslint: ') + chalk.green('Your code is clean!'));
+      }
+    }))
     .pipe(eslint.format(verboseLog, function(output) {
       fs.writeFileSync('./tasks/logs/eslint.log', output);
     }));

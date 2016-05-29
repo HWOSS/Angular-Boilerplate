@@ -7,7 +7,9 @@ var chalk = require('chalk'),
 
 module.exports = function(results) {
 
-  gutil.log(chalk.black.bold('eslint: ') +
-    chalk.red('TODO: ADD SILENT ESLINT OUTPUT!'));
+  if(results.warningCount && results.errorCount) {
+    gutil.log(chalk.black.bold('eslint: ') +
+      chalk.red('TODO: ADD SILENT ESLINT OUTPUT!'));
+  }
 
 };
