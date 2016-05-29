@@ -2,8 +2,6 @@
 'use strict';
 
 var fs          = require('fs'),
-    yargs       = require('yargs'),
-    runSequence = require('run-sequence'),
     gulp        = require('gulp'),
     gutil       = require('gulp-util'),
     livereload  = require('gulp-livereload'),
@@ -11,34 +9,8 @@ var fs          = require('fs'),
     webpack     = require('webpack'),
     wpStream    = require('webpack-stream'),
 
-    env         = require('./args.js').env,
     npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8')),
     webpackDev  = require(npmPkg.paths.webpack.dev);
-
-
-require('./clean');
-require('./eslint');
-
-
-gulp.task('webpack', function() {
-
-  var argv = yargs.options(env).argv;
-
-  switch(argv.env) {
-    case 'dev':
-      runSequence('clean:script', ['eslint', 'webpack:dev']);
-      gulp.watch(npmPkg.paths.scripts.src, ['webpack']);
-      break;
-    case 'uat':
-      runSequence(['eslint', 'clean:script'], 'webpack:dev');
-      break;
-    case 'prod':
-      runSequence(['clean:script'], 'webpack:prod');
-      break;
-    default:
-  }
-
-});
 
 
 gulp.task('webpack:dev', function() {
