@@ -1,6 +1,8 @@
 
 'use strict';
 
+require('yargs').help('args');
+
 module.exports = {
   env: {
     'e': {
@@ -14,10 +16,10 @@ module.exports = {
   silent: {
     's': {
       alias: ['silent'],
-      describe: 'asd',
-      choices: ['a', 's', 'd'],
-      demand: true,
-      requiresArg: true
+      describe: 'silently log linting errors (no verbose console ouput)',
+      boolean: true,
+      demand: false,
+      requiresArg: false
     }
   }
 };
