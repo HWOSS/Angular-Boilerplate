@@ -3,7 +3,6 @@
 
 var gulp        = require('gulp'),
     gutil       = require('gulp-util'),
-    yargs       = require('yargs'),
     runSequence = require('run-sequence');
 
 
@@ -14,7 +13,18 @@ require('./tasks/less');
 require('./tasks/html');
 
 
-// gulp [dev | uat | prod] [-s | --silent]
+gulp.task('dev', [], function() {
+  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev']);
+});
+
+gulp.task('uat', [], function() {
+  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev']);
+});
+
+gulp.task('prod', [], function() {
+  runSequence('clean', ['eslint', 'stylelint', 'webpack:prod', 'less:prod', 'html:prod']);
+});
+
 
 gulp.task('default', [], function() {
   var tasks = Object.keys(gulp.tasks).sort();
@@ -28,16 +38,9 @@ gulp.task('default', [], function() {
     gutil.log(gutil.colors.yellow('• gulp ' + t));
   });
 
-});
-
-gulp.task('dev', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev']);
-});
-
-gulp.task('uat', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev']);
-});
-
-gulp.task('prod', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:prod', 'less:prod', 'html:prod']);
+  /**
+   *
+   * TODO: Add log of available flags - preferably mapping through `./tasks/args.js`
+   *
+   */
 });
