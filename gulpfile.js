@@ -14,13 +14,14 @@ require('./tasks/stylelint');
 require('./tasks/eslint');
 require('./tasks/less');
 require('./tasks/html');
+require('./tasks/karma');
 
 
 gulp.task('dev', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev']);
+  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev'], 'karma');
 
   gulp.watch(npmPkg.paths.scripts.src, function() {
-    runSequence(['eslint', 'webpack:dev']);
+    runSequence(['eslint', 'webpack:dev'], 'karma');
   });
 
   gulp.watch(npmPkg.paths.styles.src, function() {
@@ -33,11 +34,11 @@ gulp.task('dev', [], function() {
 });
 
 gulp.task('uat', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev']);
+  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev'], 'karma');
 });
 
 gulp.task('prod', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:prod', 'less:prod', 'html:prod']);
+  runSequence('clean', ['eslint', 'stylelint', 'webpack:prod', 'less:prod', 'html:prod'], 'karma');
 });
 
 
