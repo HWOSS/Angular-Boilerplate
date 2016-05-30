@@ -1,9 +1,12 @@
 
 'use strict';
 
-var gulp        = require('gulp'),
+var fs          = require('fs'),
+    gulp        = require('gulp'),
     gutil       = require('gulp-util'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+
+    npmPkg      = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 
 require('./tasks/webpack');
@@ -15,6 +18,18 @@ require('./tasks/html');
 
 gulp.task('dev', [], function() {
   runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev']);
+
+  gulp.watch(npmPkg.paths.scripts.src, function() {
+    runSequence(['eslint', 'webpack:dev']);
+  });
+
+  gulp.watch(npmPkg.paths.styles.src, function() {
+    runSequence(['stylelint', 'less:dev']);
+  });
+
+  gulp.watch(npmPkg.paths.markup.src, function() {
+    runSequence('html:dev');
+  });
 });
 
 gulp.task('uat', [], function() {
