@@ -10,7 +10,7 @@ var fs          = require('fs'),
 
 
 require('./tasks/webpack');
-require('./tasks/stylelint');
+require('./tasks/lesshint');
 require('./tasks/eslint');
 require('./tasks/less');
 require('./tasks/html');

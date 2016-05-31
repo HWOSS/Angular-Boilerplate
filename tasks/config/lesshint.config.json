@@ -1,0 +1,6 @@
+{
+  "spaceAfterPropertyColon": {
+        "enabled": false,
+        "style": "one_space"
+    }
+}
