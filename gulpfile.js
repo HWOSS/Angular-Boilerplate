@@ -23,14 +23,8 @@ gulp.task('dev', [], function() {
   gulp.watch(npmPkg.paths.scripts.src, function() {
     runSequence(['eslint', 'webpack:dev'], 'karma');
   });
-
-  gulp.watch(npmPkg.paths.styles.src, function() {
-    runSequence(['stylelint', 'less:dev']);
-  });
-
-  gulp.watch(npmPkg.paths.markup.src, function() {
-    runSequence('html:dev');
-  });
+  gulp.watch(npmPkg.paths.styles.src, ['stylelint', 'less:dev']);
+  gulp.watch(npmPkg.paths.markup.src, ['html:dev']);
 });
 
 gulp.task('uat', [], function() {
