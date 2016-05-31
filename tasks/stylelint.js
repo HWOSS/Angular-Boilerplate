@@ -24,7 +24,7 @@ gulp.task('stylelint', function() {
     reporters.push({formatter: 'verbose', console: true});
   }
 
-  return gulp.src(npmPkg.paths.styles.src)
+  return gulp.src([npmPkg.paths.styles.src, '!./src/less/snippets/**/*.less'])
     .pipe(stylelint({
       config: rules,
       failAfterError: false,
