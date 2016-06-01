@@ -68,7 +68,12 @@
     "no-labels": "off", // disallow labeled statements
     "no-lone-blocks": "off", // disallow unnecessary nested blocks
     "no-loop-func": "error", // disallow function declarations and expressions inside loop statements
-    "no-multi-spaces": ["error", { "exceptions": { "VariableDeclarator": true, "ImportDeclaration": true } }], // disallow multiple spaces // TODO: allow alignment or not?
+    "no-multi-spaces": ["error", {
+      "exceptions": {
+        "VariableDeclarator": true,
+        "ImportDeclaration": true
+      }
+    }], // disallow multiple spaces // TODO: allow alignment or not?
     "no-multi-str": "error", // disallow multiline strings
     "no-native-reassign": "error", // disallow reassigning native objects
     "no-new": "error", // disallow new operators outside of assignments or comparisons
@@ -152,7 +157,9 @@
     "no-lonely-if": "warn", // disallow if statements as the only statement in else blocks // TODO: Made this a warn as code can probably be written clearer
     "no-mixed-spaces-and-tabs": "error", // disallow mixed spaces and tabs for indentation
     "linebreak-style": "off", // enforce consistent linebreak style // TODO: Unsure if this is necessary?
-    "no-multiple-empty-lines": ["error", { "max": 2 }], // disallow multiple empty lines
+    "no-multiple-empty-lines": ["error", {
+      "max": 2
+    }], // disallow multiple empty lines
     "no-negated-condition": "warn", // disallow negated conditions
     "no-nested-ternary": "error", // disallow nested ternary expressions
     "no-new-object": "error", // disallow Object constructors
@@ -166,9 +173,13 @@
     "no-unneeded-ternary": "error", // disallow ternary operators when simpler alternatives exist
     "array-bracket-spacing": ["error", "never"], // enforce consistent spacing inside array brackets
     "block-spacing": ["error", "always"], // enforce consistent spacing inside single-line blocks
-    "brace-style": ["error", "1tbs", { "allowSingleLine": false }], // enforce consistent brace style for blocks
+    "brace-style": ["error", "1tbs", {
+      "allowSingleLine": false
+    }], // enforce consistent brace style for blocks
     "camelcase": "error", // enforce camelcase naming convention
-    "comma-spacing": ["error", { "before": false, "after": true }], // enforce consistent spacing before and after commas
+    "comma-spacing": ["error", {
+      "before": false, "after": true
+    }], // enforce consistent spacing before and after commas
     "comma-style": ["error", "last"], // enforce consistent comma style
     "computed-property-spacing": ["error", "never"], // enforce consistent spacing inside computed property brackets
     "consistent-this": "off", // enforce consistent naming when capturing the current execution context
@@ -176,10 +187,26 @@
     "func-names": "off", // enforce named function expressions
     "func-style": "off", // enforce the consistent use of either function declarations or expressions
     "id-length": "off", // enforce minimum and maximum identifier lengths
-    "indent": ["error", 2, { "VariableDeclarator": { "var": 2, "let": 2, "const": 3 }, "SwitchCase": 1 }], // enforce consistent indentation
+    "indent": ["error", 2, {
+      "VariableDeclarator": {
+        "var": 2,
+        "let": 2,
+        "const": 3
+      }, "SwitchCase": 1
+    }], // enforce consistent indentation
     "jsx-quotes": "off", // enforce the consistent use of either double or single quotes in JSX attributes
-    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }], // enforce consistent spacing between keys and values in object literal properties
-    "keyword-spacing": ["error", { "before": true, "after": false, "overrides": { "case": { "after": true }, "else": { "after": true }, "return": { "after": true }}}], // enforce consistent spacing before and after keywords
+    "key-spacing": ["error", {
+      "beforeColon": false,
+      "afterColon": true
+    }], // enforce consistent spacing between keys and values in object literal properties
+    "keyword-spacing": ["error", {
+      "before": true, "after": false,
+      "overrides": {
+        "case": { "after": true },
+        "else": { "after": true },
+        "return": { "after": true }
+      }
+    }], // enforce consistent spacing before and after keywords
     "lines-around-comment": "off", // require empty lines around comments
     "max-depth": "off", // enforce a maximum depth that blocks can be nested // TODO: Unsure - warning?
     "max-len": "off", // enforce a maximum line length // TODO: Unsure - warning?
@@ -199,19 +226,26 @@
     "operator-linebreak": "off", // enforce consistent linebreak style for operators // TODO: Unsure - would typically error this, but unsure how it would react to multiline templates/strings
     "padded-blocks": "off", // require or disallow padding within blocks // TODO: Should this really be enforced?
     "quote-props": "off", // require quotes around object literal property names // TODO: Unsure
-    "quotes": ["error", "single", {"avoidEscape": true, "allowTemplateLiterals": true}], // enforce the consistent use of either backticks, double, or single quotes
+    "quotes": ["error", "single", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }], // enforce the consistent use of either backticks, double, or single quotes
     "id-match": "off", // require identifiers to match a specified regular expression // TODO: Unsure
     "id-blacklist": "off", // disallow specified identifiers // TODO: Unsure
     "require-jsdoc": "off", // require JSDoc comments
     "semi": ["error", "always"], // require or disallow semicolons instead of ASI
-    "semi-spacing": ["error", {"before": false, "after": true}], // enforce consistent spacing before and after semicolons
+    "semi-spacing": ["error", {
+      "before": false, "after": true
+    }], // enforce consistent spacing before and after semicolons
     "sort-vars": "off", // require variables within the same declaration block to be sorted
     "space-before-blocks": "error", // enforce consistent spacing before blocks
     "space-before-function-paren": ["error", "never"], // enforce consistent spacing before function definition opening parenthesis
     "space-in-parens": ["error", "never"], // enforce consistent spacing inside parentheses
     "space-infix-ops": "error", // require spacing around operators
     "space-unary-ops": "off", // enforce consistent spacing before or after unary operators // TODO: Unsure
-    "spaced-comment": ["error", "always", { "exceptions": ["*"] }], // enforce consistent spacing after the // or /* in a comment
+    "spaced-comment": ["error", "always", {
+      "exceptions": ["*"]
+    }], // enforce consistent spacing after the // or /* in a comment
     "wrap-regex": "off", // require parenthesis around regex literals // TODO: Usure - I find wrapped to be better
 
     // ECMAScript 6 // TODO: Have no opinion as of yet
