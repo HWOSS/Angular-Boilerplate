@@ -18,21 +18,21 @@ require('./tasks/karma');
 
 
 gulp.task('dev', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev'], 'karma');
+  runSequence('clean', ['eslint', 'lesshint', 'webpack:dev', 'less:dev', 'html:dev'], 'karma');
 
   gulp.watch(npmPkg.paths.scripts.src, function() {
     runSequence(['eslint', 'webpack:dev'], 'karma');
   });
-  gulp.watch(npmPkg.paths.styles.src, ['stylelint', 'less:dev']);
+  gulp.watch(npmPkg.paths.styles.src, ['lesshint','less:dev']);
   gulp.watch(npmPkg.paths.markup.src, ['html:dev']);
 });
 
 gulp.task('uat', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:dev', 'less:dev', 'html:dev'], 'karma');
+  runSequence('clean', ['eslint', 'lesshint', 'webpack:dev', 'less:dev', 'html:dev'], 'karma');
 });
 
 gulp.task('prod', [], function() {
-  runSequence('clean', ['eslint', 'stylelint', 'webpack:prod', 'less:prod', 'html:prod'], 'karma');
+  runSequence('clean', ['eslint', 'lesshint', 'webpack:prod', 'less:prod', 'html:prod'], 'karma');
 });
 
 

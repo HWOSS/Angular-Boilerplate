@@ -13,7 +13,7 @@ var fs          = require('fs'),
 
 gulp.task('less:dev', function() {
   return gulp
-    .src(npmPkg.paths.styles.src)
+    .src(npmPkg.paths.styles.default)
     .pipe(sourcemaps.init())
     .pipe(less({
       // TODO: Config
@@ -27,7 +27,7 @@ gulp.task('less:dev', function() {
 
 gulp.task('less:prod', function() {
   return gulp
-    .src(npmPkg.paths.styles.src)
+    .src(npmPkg.paths.styles.default)
     .pipe(less({
       // TODO: Config
     }))

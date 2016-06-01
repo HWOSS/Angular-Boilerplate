@@ -43,6 +43,7 @@
     "styles": {
       "lang": "SCSS",
       "src": "src/less/**/*.less",
+      "default": "src/less/default.less",
       "dist": "dist/css"
     },
     "markup": {

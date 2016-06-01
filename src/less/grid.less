@@ -1,1 +1,28 @@
-/* Simple grid system in here for desktop only */
+// Simple grid system in here for desktop only 
+// Based off even divisions of 12 (12 col grid)
+@gutter: 20px;
+@columns: 12;
+
+.row {
+  margin: 0 -@gutter/2px;
+  .clearfix();
+}
+
+[class*='col-'] {
+	float: left;
+  	padding-right: @gutter/2px;
+  	padding-left: @gutter/2px;
+	
+}
+
+.makeGrid(@i) when (@i > 0) {
+    @tile-value: @i;
+    // create the current tile rule
+    .col-@{tile-value} {
+        width: @tile-value/@columns*100%;
+    }
+     // next iteration
+    .makeGrid((@i - 1));
+}
+
+.makeGrid(@columns);
